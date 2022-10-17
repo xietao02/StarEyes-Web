@@ -32,7 +32,6 @@
         </el-table>
       </el-card>
     </el-space>
-
   </div>
 </template>
 

@@ -2,7 +2,7 @@
   <el-space fill wrap="true" fill-ratio="40" class="all-cards">
     <el-card class="box-card Welcome">
       <div class="all-welcome-texts">
-        <p class="welcome-texts">{{ dateState() }},Users!</p>
+        <p class="welcome-texts">{{ dateState() }},{{ user.id }}!</p>
         <p class="welcome-texts">现在是北京时间</p>
         <p class="welcome-texts">{{ times }}</p>
         <p class="welcome-texts">今日共监测到{{ EventNumber }}起事件。</p>
@@ -86,12 +86,16 @@
 </style>
 
 <script>
+import { user } from "../common/data";
+
+
 export default {
   data() {
     return {
       EventNumber: 0,
       UserName: "Default",
       times: "",
+      user: user,
     };
   },
   methods: {

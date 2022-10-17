@@ -19,18 +19,20 @@ body {
   border: 0;
 }
 .header_total {
+  z-index: 100;
+  height: auto;
   background-color: #112d4e;
-  margin: -19px 0px 0px;
-  padding: 15px 20px 15px 20px;
+  margin: -17px 0px 0px 0px;
+  padding: 10px 20px 10px 20px;
 }
 .MenuLeft {
   height: 100%;
 }
 .el-aside {
-  height: 100%;
   width: 20vw;
   max-width: 300px;
-  min-width: 250px;
+  min-width: 180px;
+  background-color: #dbe2ef;
 }
 .el-main {
   background-color: #dbe2ef;
@@ -43,7 +45,6 @@ import { getToken, user } from "../common/data";
 import Header from "../components/Header.vue";
 import MenuLeft from "../components/MenuLeft.vue";
 let token = getToken();
-
 
 ElMessage({
   type: "info",
