@@ -40,7 +40,7 @@ export default {
 <script setup>
 import { reactive, getCurrentInstance } from "vue";
 import { User, Lock } from "@element-plus/icons-vue";
-import request from "../request";
+import request from "../utils/request";
 import router from "../router";
 import { saveUserInfo, user } from "../common/localStorage";
 

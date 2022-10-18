@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import request from "../request";
+import request from "../utils/request";
 import { getToken, getID, user } from "../common/localStorage";
 
 const routes = [
