@@ -1,15 +1,18 @@
 <template>
-  <router-view/>
+  <router-view />
 </template>
 
 <style>
-  body {
-    margin: 0;
-    padding: 0;
-    border: 0;
-  }
+@import "./assets/css/main.css";
 </style>
+
 <script>
-
-
+export default{
+name: 'App',
+provide(){
+  return {
+    reload: this.reload
+  }
+}  
+}
 </script>

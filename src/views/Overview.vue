@@ -1,5 +1,5 @@
 <template>
-  <el-space fill wrap="true" fill-ratio="40" class="all-cards">
+  <el-space fill :fill-ratio=40 class="all-cards">
     <el-card class="box-card Welcome">
       <div class="all-welcome-texts">
         <p class="welcome-texts">{{ dateState() }},{{ user.id }}!</p>
@@ -48,10 +48,9 @@
 
 <style>
 .el-card__body {
-  /* vertical-align: middle; */
-
   margin-top: 30px;
 }
+
 .welcome-texts {
   font-size: 30px;
   font-weight: 600;
@@ -86,8 +85,9 @@
 </style>
 
 <script>
-import { user } from "../common/data";
-
+import { user } from "../common/localStorage";
+import { ref } from "vue";
+const fill_ratio = ref(40)
 
 export default {
   data() {

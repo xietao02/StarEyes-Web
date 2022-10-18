@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import request from "../request";
-import { getToken, getID, user } from "../common/data";
+import { getToken, getID, user } from "../common/localStorage";
 
 const routes = [
   {
@@ -13,7 +13,7 @@ const routes = [
     name: "home",
     component: () => import("../views/Home.vue"),
     meta: {
-      title: "首页",
+      title: "首页 - StarEyes",
     },
   },
   {
@@ -31,49 +31,49 @@ const routes = [
     component: () => import("../views/Dashboard.vue"),
     meta: {
       title: "控制台 - StarEyes",
-      requiresAuth: false,
+      requiresAuth: true,
     },
     children: [
       {
         path: "overview",
-        component: () => import("../components/Overview.vue"),
+        component: () => import("../views/Overview.vue"),
         meta: {
-          requiresAuth: false,
+          requiresAuth: true,
         },
       },
       {
         path: "monitors",
-        component: () => import("../components/MonitorsManagement.vue"),
+        component: () => import("../views/MonitorsManagement.vue"),
         meta: {
-          requiresAuth: false,
+          requiresAuth: true,
         },
       },
       {
         path: "events",
-        component: () => import("../components/Events.vue"),
+        component: () => import("../views/Events.vue"),
         meta: {
-          requiresAuth: false,
+          requiresAuth: true,
         },
       },
       {
         path: "servers",
-        component: () => import("../components/ServersManagement.vue"),
+        component: () => import("../views/ServersManagement.vue"),
         meta: {
-          requiresAuth: false,
+          requiresAuth: true,
         },
       },
       {
         path: "personal_info",
-        component: () => import("../components/PersonalInformation.vue"),
+        component: () => import("../views/PersonalInformation.vue"),
         meta: {
-          requiresAuth: false,
+          requiresAuth: true,
         },
       },
       {
         path: "about",
-        component: () => import("../components/About.vue"),
+        component: () => import("../views/About.vue"),
         meta: {
-          requiresAuth: false,
+          requiresAuth: true,
         },
       },
     ],

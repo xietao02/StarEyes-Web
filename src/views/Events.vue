@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts" setup>
-import Maps from "./Maps.vue";
+import Maps from "../components/Maps.vue";
 import { computed, ref } from "vue";
 
 interface User {

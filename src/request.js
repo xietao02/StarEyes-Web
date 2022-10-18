@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ElMessage } from "element-plus";
-import { getToken } from "./common/data";
+import { getToken } from "./common/localStorage";
 
 const request = axios.create({
   baseURL: "http://localhost:9090",
