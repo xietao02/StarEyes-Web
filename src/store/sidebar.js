@@ -11,5 +11,8 @@ export const useSiderbarStore = defineStore("SiderbarStore", {
     toggleCollapse() {
       this.isCollapse = !this.isCollapse;
     },
+    reset() {
+      this.isCollapse = false;
+    },
   },
 });

@@ -18,11 +18,13 @@
       </template>
       <template #extra>
         <div class="post-header">
-          <div class="notice">
-            <el-icon :size="25" color="#f2f2f2">
-              <Bell />
-            </el-icon>
-            <span class="red-point"></span>
+          <div class="notice" @click="router.push({path: '/dashboard/events'})">
+            <el-tooltip effect="dark" :content="events ? `有${events}条未读消息` : `事件消息`" placement="bottom">
+              <el-icon :size="25" color="#f2f2f2">
+                <Bell />
+              </el-icon>
+            </el-tooltip>
+            <span class="red-point" v-if="events"></span>
           </div>
           <el-dropdown trigger="click" @command="handleCommand">
             <div class="user-icon" @mouseover="user_hover = true" @mouseleave="user_hover = false">
@@ -53,7 +55,10 @@
 
 <script>
 export default {
-  inject: ['reload']
+  inject: ["reload"],
+  data() {
+    return user;
+  }
 };
 </script>
 
@@ -62,10 +67,10 @@ import { useSiderbarStore } from "../store/sidebar"
 import router from "../router";
 import { removeUserInfo } from "../common/localStorage";
 import { user } from "../common/localStorage";
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from 'vue';
 
 const user_hover = ref(false);
-
+const events = ref(2);
 const SiderbarStore = useSiderbarStore();
 const collapseChange = () => {
   SiderbarStore.toggleCollapse();
@@ -75,19 +80,29 @@ const handleCommand = (command) => {
   if (command == 'logout') {
     removeUserInfo();
     router.push({ path: '/login' });
-    this.reload();
-    ElMessage({
-      type: "info",
-      message: "Log out successfully!",
-    });
+    SiderbarStore.reset();
   }
-}
+};
+
+onMounted(() => {
+  if (document.body.clientWidth < 1500) {
+    collapseChange();
+  }
+});
+
+onUnmounted(() => {
+  ElMessage({
+    type: "info",
+    message: "Log out successfully!",
+  });
+});
+
 </script>
 
 <style>
 .header {
-  z-index: 100;
-  height: auto;
+  z-index: 3;
+  height: 50px;
   background-color: #112d4e;
   width: 100%;
   margin: -17px 0px 0px -20px;
@@ -104,12 +119,9 @@ const handleCommand = (command) => {
 
 .collapse-btn {
   display: inline-block;
-  justify-content: center;
-  height: 100%;
-  align-items: center;
-  border-radius: 50%;
+  height: 30px;
   background-color: #112d4e;
-  margin-right: 20px;
+  margin: auto 17px;
   cursor: pointer;
 }
 
@@ -131,7 +143,7 @@ const handleCommand = (command) => {
 
 .red-point {
   position: absolute;
-  right: 87px;
+  right: 66px;
   top: 16px;
   width: 9px;
   height: 9px;

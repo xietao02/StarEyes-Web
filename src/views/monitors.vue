@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <el-space class="box-title-space" fill>
     <el-card class="box-card-title">
       <template #header>
@@ -33,7 +33,6 @@
   </el-space>
 
   <div class="monitors-card">
-    <!-- <div style="margin-bottom: 15px">fill: <el-switch v-model="fill" /></div> -->
     <el-space fill>
       <el-card v-for="i in 3" :key="i" class="box-card" id="monitor-each">
         <template #header>
@@ -118,11 +117,6 @@ export default {
   margin-right: 10px;
 }
 
-/* .monitors-card > .box-card {
-  height: max-content;
-	width: 50vw;
-} */
-
 #monitor-each {
   height: max-content;
   padding-bottom: 20px;
@@ -143,3 +137,8 @@ export default {
   list-style-type: none;
 }
 </style>
+ -->
+
+<template>
+  <h1>monitors</h1>
+</template>

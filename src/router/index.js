@@ -11,7 +11,7 @@ const routes = [
   {
     path: "/home",
     name: "home",
-    component: () => import("../views/Home.vue"),
+    component: () => import("../views/home.vue"),
     meta: {
       title: "首页 - StarEyes",
     },
@@ -19,7 +19,7 @@ const routes = [
   {
     path: "/login",
     name: "login",
-    component: () => import("../views/Login.vue"),
+    component: () => import("../views/login.vue"),
     meta: {
       title: "登录 - StarEyes",
     },
@@ -28,50 +28,56 @@ const routes = [
     path: "/dashboard",
     name: "dashboard",
     redirect: "/dashboard/overview",
-    component: () => import("../views/Dashboard.vue"),
+    component: () => import("../views/dashboard.vue"),
     meta: {
       title: "控制台 - StarEyes",
       requiresAuth: true,
     },
     children: [
       {
+        name: "overview",
         path: "overview",
-        component: () => import("../views/Overview.vue"),
+        component: () => import("../views/overview.vue"),
         meta: {
           requiresAuth: true,
         },
       },
       {
+        name: "monitors",
         path: "monitors",
-        component: () => import("../views/MonitorsManagement.vue"),
+        component: () => import("../views/monitors.vue"),
         meta: {
           requiresAuth: true,
         },
       },
       {
+        name: "events",
         path: "events",
-        component: () => import("../views/Events.vue"),
+        component: () => import("../views/events.vue"),
         meta: {
           requiresAuth: true,
         },
       },
       {
+        name: "servers",
         path: "servers",
-        component: () => import("../views/ServersManagement.vue"),
+        component: () => import("../views/servers.vue"),
         meta: {
           requiresAuth: true,
         },
       },
       {
-        path: "personal_info",
-        component: () => import("../views/PersonalInformation.vue"),
+        name: "account",
+        path: "account",
+        component: () => import("../views/account.vue"),
         meta: {
           requiresAuth: true,
         },
       },
       {
+        name: "about",
         path: "about",
-        component: () => import("../views/About.vue"),
+        component: () => import("../views/about.vue"),
         meta: {
           requiresAuth: true,
         },
@@ -98,11 +104,8 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log("to: " + to.path);
   if (to.meta.requiresAuth == true) {
-    console.log("requiresAuth: true!!!");
     if (getToken()) {
-      console.log("user.id: " + getID());
       // 有token, 交给后端进行验证
       request.post("/api/auth/verify", user).then((res) => {
         if (res == true) {
@@ -114,16 +117,15 @@ router.beforeEach((to, from, next) => {
         }
       });
     } else {
+      next({
+        path: "/login",
+      });
       ElNotification({
         type: "warning",
         message: "登录会话已过期，请重新登录!",
       });
-      next({
-        path: "/login",
-      });
     }
   } else {
-    console.log("requiresAuth: false!!!");
     next();
   }
   if (to.meta.title) {

@@ -1,11 +1,10 @@
-<template>
+<!-- <template>
   <div>
     <el-space fill class="event-map-spcae">
       <el-card class="maps-card">
         <Maps></Maps>
       </el-card>
       <el-card class="maps-card">
-        <!-- 事件列表 -->
         <el-table :data="filterTableData" style="width: 100%">
           <el-table-column label="发生时间" prop="time" />
           <el-table-column label="摄像头ID" prop="id" />
@@ -106,3 +105,8 @@ const tableData: User[] = [
   width: 100%;
 }
 </style>
+ -->
+
+<template>
+  <h1>events</h1>
+</template>

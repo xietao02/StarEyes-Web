@@ -29,8 +29,8 @@ request.interceptors.request.use(
 request.interceptors.response.use(
   (response) => {
     let res = response.data;
-    console.log("status: " + response.status);
-    console.log("response.data: " + res);
+    // console.log("status: " + response.status);
+    // console.log("response.data: " + res);
 
     // 如果是返回的文件
     if (response.config.responseType === "blob") {

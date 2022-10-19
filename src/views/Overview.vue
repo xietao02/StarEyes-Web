@@ -1,5 +1,5 @@
 <template>
-  <el-space fill :fill-ratio=40 class="all-cards">
+  <el-space fill :fill-ratio="fill_ratio" class="all-cards">
     <el-card class="box-card Welcome">
       <div class="all-welcome-texts">
         <p class="welcome-texts">{{ dateState() }},{{ user.id }}!</p>
@@ -46,54 +46,21 @@
   </el-space>
 </template>
 
-<style>
-.el-card__body {
-  margin-top: 30px;
-}
+<script setup>
+const fill_ratio = ref(40)
 
-.welcome-texts {
-  font-size: 30px;
-  font-weight: 600;
-  color: rgb(0, 0, 0);
-  display: flex;
-  padding-left: 2ch;
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.text {
-  font-size: 20px;
-}
-
-.item {
-  margin-bottom: 18px;
-}
-
-.box-card {
-  height: 45vh;
-
-  min-width: 400px;
-}
-
-.all-cards {
-  max-height: 800px;
-}
-</style>
+</script>
 
 <script>
 import { user } from "../common/localStorage";
-import { ref } from "vue";
-const fill_ratio = ref(40)
+import { ref, onMounted } from "vue";
+export const newIndex = "1";
+
 
 export default {
   data() {
     return {
       EventNumber: 0,
-      UserName: "Default",
       times: "",
       user: user,
     };
@@ -150,3 +117,42 @@ export default {
   },
 };
 </script>
+
+
+<style>
+.el-card__body {
+  margin-top: 30px;
+}
+
+.welcome-texts {
+  font-size: 30px;
+  font-weight: 600;
+  color: rgb(0, 0, 0);
+  display: flex;
+  padding-left: 2ch;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text {
+  font-size: 20px;
+}
+
+.item {
+  margin-bottom: 18px;
+}
+
+.box-card {
+  height: 45vh;
+
+  min-width: 400px;
+}
+
+.all-cards {
+  max-height: 800px;
+}
+</style>

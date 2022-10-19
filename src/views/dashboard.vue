@@ -1,59 +1,67 @@
 <template>
   <div class="content-box">
-    <el-container>
-      <el-header>
-        <v-header ref="header" />
-      </el-header>
-      <el-container>
-        <el-aside>
-          <v-sidebar />
-        </el-aside>
-        <el-main>
-          <router-view></router-view>
-        </el-main>
-      </el-container>
-    </el-container>
+    <v-header />
+    <v-sidebar />
+    <div class="content" :class="{ 'content-collapse': SiderbarStore.isCollapse}">
+      <router-view v-slot="{ Component }">
+        <transition name="fade" mode="out-in">
+          <keep-alive>
+            <component :is="Component"></component>
+          </keep-alive>
+        </transition>
+      </router-view>
+    </div>
+
   </div>
 </template>
 
 <script setup>
 import { ElMessage } from "element-plus";
 import { user } from "../common/localStorage";
-import vHeader from "../components/Header.vue";
-import vSidebar from "../components/Sidebar.vue";
+import vHeader from "../components/header.vue";
+import vSidebar from "../components/sidebar.vue";
+import { onMounted } from 'vue'
+import { useSiderbarStore } from "../store/sidebar"
 
+const SiderbarStore = useSiderbarStore();
 
-ElMessage({
-  type: "info",
-  message: "Welcome! User " + user.id + ".",
-});
-</script>
-
-<script>
-export default {
-  methods: {
-    getHeight() {
-      this.conheight.height = window.innerHeight - 170 + "px";
-    },
-    created() {
-      window.addEventListener("resize", this.getHeight);
-      this.getHeight();
-    },
-  },
-};
+onMounted(() => {
+  ElMessage({
+    type: "info",
+    message: "Welcome! User " + user.id + ".",
+  });
+})
 </script>
 
 <style>
-.MenuLeft {
-  height: 100%;
+.content-box {
+  background-color: #ececec;
 }
-.el-aside {
-  width: 20vw;
-  max-width: 300px;
-  min-width: 180px;
-  background-color: #dbe2ef;
+
+.content {
+  position: absolute;
+  left: 250px;
+  right: 0;
+  top: 58px;
+  bottom: 0;
+  padding: 20px 6px 20px 20px;
+  overflow-y: scroll;
+  background-color: #ececec;
+  -webkit-transition: left 0.3s ease-in-out;
+  transition: left 0.3s ease-in-out;
 }
-.el-main {
-  background-color: #dbe2ef;
+
+.content-collapse {
+  left: 63px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.1s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
