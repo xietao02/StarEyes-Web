@@ -153,6 +153,7 @@ export default {
 }
 
 .all-cards {
-  max-height: 800px;
+  max-height: 900px;
+  width: 100%;
 }
 </style>

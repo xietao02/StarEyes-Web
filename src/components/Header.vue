@@ -41,7 +41,8 @@
             </div>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item disabled><span style="font-weight:bold">ID:{{ user.id }}</span></el-dropdown-item>
+                <el-dropdown-item command="account"><span style="font-weight:bold">ID:{{ user.id }}</span>
+                </el-dropdown-item>
                 <el-dropdown-item divided command="logout"><span style="color:#f86c6c; font-weight:bold">退出登录</span>
                 </el-dropdown-item>
               </el-dropdown-menu>
@@ -81,6 +82,9 @@ const handleCommand = (command) => {
     removeUserInfo();
     router.push({ path: '/login' });
     SiderbarStore.reset();
+  }
+  else if (command == 'account') {
+    router.push({ path: '/dashboard/account' });
   }
 };
 

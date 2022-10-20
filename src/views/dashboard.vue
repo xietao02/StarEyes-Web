@@ -1,5 +1,5 @@
 <template>
-  <div class="content-box">
+  <div class="content-wrap">
     <v-header />
     <v-sidebar />
     <div class="content" :class="{ 'content-collapse': SiderbarStore.isCollapse}">
@@ -34,7 +34,7 @@ onMounted(() => {
 </script>
 
 <style>
-.content-box {
+.content-wrap {
   background-color: #ececec;
 }
 
